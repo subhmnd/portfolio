@@ -14,7 +14,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { name: "About", href: "/#about" },
+  { name: "About", href: "/" },
   { name: "Projects", href: "/projects" },
 ];
 
@@ -43,17 +43,18 @@ export function Navbar() {
         <div className="flex items-center gap-1 sm:gap-1.5">
           {navItems.map((item) => {
             const isActive =
-              (item.href === "/projects" && pathname.startsWith("/projects")) ||
-              (item.href === "/#about" && pathname === "/" && typeof window !== "undefined" && window.location.hash === "#about");
+              item.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(item.href);
 
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`px-3 py-1.5 text-xs sm:text-sm font-medium border ${
+                className={`px-3 py-1.5 text-xs sm:text-sm font-medium border border-border transition-colors ${
                   isActive
-                    ? "text-foreground bg-accent border-border font-semibold"
-                    : "text-muted-foreground hover:text-foreground hover:bg-accent/70 border-transparent hover:border-border"
+                    ? "text-foreground bg-accent/40 font-semibold"
+                    : "text-muted-foreground bg-background hover:text-foreground hover:bg-accent/20"
                 }`}
               >
                 {item.name}

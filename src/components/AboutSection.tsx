@@ -33,7 +33,6 @@ export function AboutSection() {
 
   return (
     <motion.section
-      id="about"
       variants={subtleFadeVariants}
       initial="hidden"
       animate="visible"
