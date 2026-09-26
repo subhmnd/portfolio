@@ -29,12 +29,12 @@ export const ARTICLES: Article[] = [
     title: "Why We are Building Nodezed",
     subtitle:
       "A simpler, more transparent way to deploy and manage cloud infrastructure.",
-    date: "March 2025",
+    date: "Sep 27, 2026",
     readTime: "4 min read",
     image: "/articles/nodezed-building.png",
     tags: ["Cloud Infrastructure", "Nodezed", "DevOps", "Developer Experience"],
     summary:
-      "Cloud infrastructure has become unnecessarily complicated. Nodezed is a developer-first cloud infrastructure platform designed to make deploying and scaling software simple, transparent, and completely under your control.",
+      "A simpler, more transparent way to deploy and manage cloud infrastructure. Cloud infrastructure has become unnecessarily complicated—Nodezed brings essential compute, storage, databases, and edge networking together into a unified experience built for developers.",
     author: {
       name: "Subh Mondal",
       role: "Founder & CEO at Nodezed",
