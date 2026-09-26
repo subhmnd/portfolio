@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { SOCIAL } from "@/lib/social";
 
 const subtleFadeVariants = {
   hidden: { opacity: 0, y: 8 },
@@ -40,7 +41,7 @@ export function AboutSection() {
         <div className="hidden md:block space-y-4">
           {/* Paragraph 1: Origin & Early Journey */}
           <p className="text-[15px] sm:text-base leading-relaxed text-foreground font-normal">
-            &ldquo;Hi, I&apos;m <span className="font-semibold text-foreground">Subhankar Mondal</span>. My software engineering journey began back in 2021 driven by a passion for building scalable web systems. Over the years, I coded and deployed numerous applications and tools. While many of those early experiments never blew up, each build was an invaluable masterclass that refined my technical craft and engineering discipline.&rdquo;
+            &ldquo;Hi, I&apos;m <span className="font-semibold text-foreground">{SOCIAL.name}</span>. My software engineering journey began back in 2021 driven by a passion for building scalable web systems. Over the years, I coded and deployed numerous applications and tools. While many of those early experiments never blew up, each build was an invaluable masterclass that refined my technical craft and engineering discipline.&rdquo;
           </p>
 
           {/* Paragraph 2: The Vision for Nodezed */}
@@ -68,7 +69,7 @@ export function AboutSection() {
         <div className="block md:hidden space-y-3.5">
           {/* Paragraph 1: Origin */}
           <p className="text-[14px] leading-relaxed text-foreground font-normal">
-            &ldquo;Hi, I&apos;m <span className="font-semibold text-foreground">Subhankar Mondal</span>. My software journey began in 2021. Over the years, I coded and shipped dozens of applications and systems. While none blew up, each project refined my craft and taught me resilience.&rdquo;
+            &ldquo;Hi, I&apos;m <span className="font-semibold text-foreground">{SOCIAL.name}</span>. My software journey began in 2021. Over the years, I coded and shipped dozens of applications and systems. While none blew up, each project refined my craft and taught me resilience.&rdquo;
           </p>
 
           {/* Paragraph 2: Nodezed */}

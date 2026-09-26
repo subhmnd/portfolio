@@ -1,4 +1,4 @@
-# 🚀 Subhankar Mondal Portfolio (`subhm.in`)
+# 🚀 Subh Mondal Portfolio (`subhmondal.com`)
 
 A modern, high-performance **Portfolio** built with **Next.js 14 App Router**, **TypeScript**, **Tailwind CSS**, **Shadcn UI**, and **Framer Motion**.
 

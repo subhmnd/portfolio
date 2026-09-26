@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SOCIAL } from "@/lib/social";
 
 interface NavItem {
   name: string;
@@ -14,8 +15,7 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: "About", href: "/#about" },
-  { name: "Projects", href: "/#projects" },
-  { name: "Articles", href: "/articles" },
+  { name: "Projects", href: "/projects" },
 ];
 
 export function Navbar() {
@@ -34,7 +34,7 @@ export function Navbar() {
         <Link
           href="/"
           className="flex items-center justify-center w-7 h-7 bg-foreground text-background font-bold text-xs tracking-wider border border-foreground select-none"
-          aria-label="Subhankar Mondal Home"
+          aria-label={`${SOCIAL.name} Home`}
         >
           S
         </Link>
@@ -43,7 +43,7 @@ export function Navbar() {
         <div className="flex items-center gap-1 sm:gap-1.5">
           {navItems.map((item) => {
             const isActive =
-              (item.href === "/articles" && pathname.startsWith("/articles")) ||
+              (item.href === "/projects" && pathname.startsWith("/projects")) ||
               (item.href === "/#about" && pathname === "/" && typeof window !== "undefined" && window.location.hash === "#about");
 
             return (
@@ -71,10 +71,10 @@ export function Navbar() {
             variant="ghost"
             size="icon"
             className="w-8 h-8 text-muted-foreground hover:text-foreground hover:bg-accent border border-transparent hover:border-border"
-            title="GitHub Profile"
+            title={SOCIAL.github.title}
           >
             <a
-              href="https://subhm.in/gh"
+              href={SOCIAL.github.url}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
