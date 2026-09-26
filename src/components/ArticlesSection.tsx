@@ -58,84 +58,82 @@ export function ArticlesSection() {
         </p>
       </motion.div>
 
-      {/* Articles List */}
+      {/* Articles List with Horizontal Left-Image / Right-Text Layout */}
       <motion.div variants={containerVariants} className="w-full">
         {ARTICLES.map((article) => (
           <motion.article
             key={article.slug}
             variants={cascadeDownVariants}
-            className="px-4 sm:px-8 py-8 sm:py-9 border-b border-border space-y-5 hover:bg-accent/10 transition-colors duration-200 group relative"
+            className="px-4 sm:px-8 py-7 sm:py-8 border-b border-border hover:bg-accent/10 transition-colors duration-200 group relative"
           >
-            {/* Meta Row: Date, Read Time, Tags */}
-            <div className="flex flex-wrap items-center justify-between gap-2.5">
-              <div className="flex items-center gap-3 text-xs font-mono text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5">
-                  <Calendar className="w-3.5 h-3.5" />
-                  {article.date}
-                </span>
-                <span>•</span>
-                <span className="inline-flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5" />
-                  {article.readTime}
-                </span>
-              </div>
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
+              
+              {/* Left Side: Image Thumbnail */}
+              <Link
+                href={`/articles/${article.slug}`}
+                className="block relative w-full sm:w-[260px] md:w-[280px] aspect-[16/10] shrink-0 overflow-hidden border border-border bg-muted/40 shadow-xs group-hover:border-foreground/40 transition-colors select-none"
+              >
+                <Image
+                  src={article.image}
+                  alt={article.title}
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 100vw, 280px"
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                />
+              </Link>
 
-              {/* Tags */}
-              <div className="flex flex-wrap items-center gap-1.5">
-                {article.tags.slice(0, 2).map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2 py-0.5 text-[11px] font-mono bg-muted/50 border border-border text-muted-foreground"
-                  >
-                    {tag}
+              {/* Right Side: Relative Metadata, Narrative & Action Button */}
+              <div className="flex-1 space-y-3 min-w-0">
+                {/* Meta Row: Date, Read Time & Category Tag */}
+                <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono text-muted-foreground">
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5" />
+                    {article.date}
                   </span>
-                ))}
+                  <span>•</span>
+                  <span className="inline-flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />
+                    {article.readTime}
+                  </span>
+                  {article.tags[0] && (
+                    <>
+                      <span>•</span>
+                      <span className="px-1.5 py-0.5 text-[11px] bg-muted/60 border border-border text-foreground">
+                        {article.tags[0]}
+                      </span>
+                    </>
+                  )}
+                </div>
+
+                {/* Article Title */}
+                <h2 className="text-lg sm:text-xl font-bold tracking-tight text-foreground leading-snug">
+                  <Link
+                    href={`/articles/${article.slug}`}
+                    className="inline-flex items-center gap-1.5 hover:underline decoration-foreground/40 underline-offset-4 group/title"
+                  >
+                    <span>{article.title}</span>
+                    <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover/title:text-foreground group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all duration-200 shrink-0" />
+                  </Link>
+                </h2>
+
+                {/* Subtitle / Excerpt */}
+                <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-normal line-clamp-2">
+                  {article.subtitle}
+                </p>
+
+                {/* Readable Article Button */}
+                <div className="pt-1">
+                  <Link
+                    href={`/articles/${article.slug}`}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono border border-border hover:border-foreground/80 bg-background hover:bg-accent text-foreground shadow-xs transition-colors group/btn font-medium"
+                  >
+                    <span>Read Article</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground group-hover/btn:text-foreground group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all duration-200" />
+                  </Link>
+                </div>
               </div>
-            </div>
 
-            {/* Featured Image Banner */}
-            <Link
-              href={`/articles/${article.slug}`}
-              className="block relative aspect-[1200/630] w-full overflow-hidden border border-border bg-muted/40 shadow-xs group-hover:border-foreground/40 transition-colors"
-            >
-              <Image
-                src={article.image}
-                alt={article.title}
-                fill
-                priority
-                sizes="(max-width: 800px) 100vw, 800px"
-                className="object-cover transition-transform duration-300 group-hover:scale-[1.01]"
-              />
-            </Link>
-
-            {/* Title & Subtitle */}
-            <div className="space-y-2">
-              <Link
-                href={`/articles/${article.slug}`}
-                className="group/link inline-flex items-center gap-2 text-xl sm:text-2xl font-bold tracking-tight text-foreground hover:underline decoration-foreground/40 underline-offset-4"
-              >
-                <span>{article.title}</span>
-                <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover/link:text-foreground group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all duration-200" />
-              </Link>
-              <p className="text-sm sm:text-base leading-relaxed text-foreground/80 font-normal">
-                {article.subtitle}
-              </p>
-            </div>
-
-            {/* Summary */}
-            <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground font-normal">
-              {article.summary}
-            </p>
-
-            {/* Action Bar (Clean: No Twitter links) */}
-            <div className="flex items-center gap-3 pt-1">
-              <Link
-                href={`/articles/${article.slug}`}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono border border-border hover:border-foreground/80 bg-background hover:bg-accent text-foreground shadow-xs transition-colors group/btn"
-              >
-                <span>Read Full Article</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground group-hover/btn:text-foreground group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all duration-200" />
-              </Link>
             </div>
           </motion.article>
         ))}
