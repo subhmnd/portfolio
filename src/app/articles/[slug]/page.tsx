@@ -41,7 +41,7 @@ export function generateMetadata({ params }: Props): Metadata {
       description: article.subtitle,
       url: canonicalUrl,
       type: "article",
-      publishedTime: "2025-03-01T00:00:00Z",
+      publishedTime: "2026-09-27T00:00:00Z",
       authors: [SOCIAL.name],
       tags: article.tags,
       images: [
@@ -82,8 +82,8 @@ export default function ArticleDetailPage({ params }: Props) {
     headline: article.title,
     description: article.subtitle,
     image: [imageUrl],
-    datePublished: "2025-03-01T00:00:00Z",
-    dateModified: "2025-03-01T00:00:00Z",
+    datePublished: "2026-09-27T00:00:00Z",
+    dateModified: "2026-09-27T00:00:00Z",
     author: {
       "@type": "Person",
       name: article.author.name,
@@ -125,7 +125,7 @@ export default function ArticleDetailPage({ params }: Props) {
         </div>
 
         {/* Editorial Article Header */}
-        <header className="px-4 sm:px-8 pt-8 sm:pt-10 pb-8 border-b border-border space-y-4">
+        <header className="px-4 sm:px-8 pt-8 sm:pt-10 pb-4 sm:pb-5 border-b border-border space-y-4">
           {/* Category Tag */}
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground">
             <span>Cloud Infrastructure</span>
@@ -143,8 +143,8 @@ export default function ArticleDetailPage({ params }: Props) {
             </p>
           </div>
 
-          {/* Author Byline */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/60">
+          {/* Author Byline (Top and bottom gaps equal: pt-4 sm:pt-5 and pb-4 sm:pb-5 on header) */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 sm:pt-5 border-t border-border/60">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 border border-border overflow-hidden shrink-0 select-none">
                 <Image

@@ -68,23 +68,23 @@ export function ArticlesSection() {
           >
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 sm:gap-6">
               
-              {/* Left Side: Image Thumbnail */}
+              {/* Left Side: Compact Image Thumbnail (No hover transform) */}
               <Link
                 href={`/articles/${article.slug}`}
-                className="block relative w-full sm:w-[260px] md:w-[280px] aspect-[16/10] shrink-0 overflow-hidden border border-border bg-muted/40 shadow-xs group-hover:border-foreground/40 transition-colors select-none"
+                className="block relative w-full sm:w-[170px] md:w-[190px] aspect-[16/10] shrink-0 overflow-hidden border border-border bg-muted/40 shadow-xs group-hover:border-foreground/40 transition-colors select-none"
               >
                 <Image
                   src={article.image}
                   alt={article.title}
                   fill
                   priority
-                  sizes="(max-width: 640px) 100vw, 280px"
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, 190px"
+                  className="object-cover"
                 />
               </Link>
 
-              {/* Right Side: Relative Metadata, Narrative & Action Button */}
-              <div className="flex-1 space-y-3 min-w-0">
+              {/* Right Side: Metadata & Narrative */}
+              <div className="flex-1 space-y-2.5 min-w-0">
                 {/* Meta Row: Date, Read Time & Category Tag */}
                 <div className="flex flex-wrap items-center gap-2.5 text-xs font-mono text-muted-foreground">
                   <span className="inline-flex items-center gap-1.5">
@@ -117,21 +117,10 @@ export function ArticlesSection() {
                   </Link>
                 </h2>
 
-                {/* Subtitle / Excerpt */}
-                <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-normal line-clamp-2">
-                  {article.subtitle}
+                {/* Subtitle / Excerpt Narrative */}
+                <p className="text-xs sm:text-[13px] text-foreground/80 leading-relaxed font-normal">
+                  {article.subtitle} Cloud infrastructure has become unnecessarily complicated—Nodezed brings essential compute, storage, databases, and edge networking together into a unified experience built for developers.
                 </p>
-
-                {/* Readable Article Button */}
-                <div className="pt-1">
-                  <Link
-                    href={`/articles/${article.slug}`}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono border border-border hover:border-foreground/80 bg-background hover:bg-accent text-foreground shadow-xs transition-colors group/btn font-medium"
-                  >
-                    <span>Read Article</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-muted-foreground group-hover/btn:text-foreground group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-all duration-200" />
-                  </Link>
-                </div>
               </div>
 
             </div>
