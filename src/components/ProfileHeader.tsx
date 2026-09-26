@@ -92,7 +92,7 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
               />
             </div>
 
-            {/* Projects & Theme Toggle (directly after DP) */}
+            {/* Projects, Articles & Theme Toggle (directly after DP) */}
             <div className="flex items-center gap-1.5 pb-1">
               <Button
                 asChild
@@ -102,6 +102,17 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
               >
                 <Link href="/projects">
                   Projects
+                </Link>
+              </Button>
+
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="h-8 px-3 text-xs font-medium border-border hover:bg-accent text-foreground shadow-xs"
+              >
+                <Link href="/articles">
+                  Articles
                 </Link>
               </Button>
 

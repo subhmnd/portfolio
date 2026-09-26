@@ -16,6 +16,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "About", href: "/" },
   { name: "Projects", href: "/projects" },
+  { name: "Articles", href: "/articles" },
 ];
 
 export function Navbar() {
@@ -45,7 +46,8 @@ export function Navbar() {
             const isActive =
               item.href === "/"
                 ? pathname === "/"
-                : pathname.startsWith(item.href);
+                : pathname.startsWith(item.href) ||
+                  (item.href === "/articles" && pathname.startsWith("/article"));
 
             return (
               <Link
