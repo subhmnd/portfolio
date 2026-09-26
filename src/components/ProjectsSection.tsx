@@ -2,29 +2,66 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import { PROJECTS } from "@/lib/projects";
 
-const containerVariants = {
+// Smooth custom cubic-bezier ease for Apple/Linear style fluidity
+const easeCustom = [0.16, 1, 0.3, 1] as const;
+
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.04,
+      staggerChildren: 0.16,
+      delayChildren: 0.06,
     },
   },
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
+const headerVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 18,
+    filter: "blur(4px)",
+  },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.55,
+      ease: easeCustom,
+    },
+  },
+};
+
+const cardVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    y: 28,
+    filter: "blur(6px)",
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.65,
+      ease: easeCustom,
+    },
+  },
+};
+
+const tagVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.35,
+      ease: easeCustom,
     },
   },
 };
@@ -37,9 +74,9 @@ export function ProjectsSection() {
       animate="visible"
       className="w-full"
     >
-      {/* Refined Page Header matching AboutSection padding & typography */}
+      {/* Refined Page Header with fluid motion */}
       <motion.div
-        variants={itemVariants}
+        variants={headerVariants}
         className="px-4 sm:px-8 pt-8 sm:pt-10 pb-7 border-b border-border space-y-2"
       >
         <div className="flex items-center gap-2">
@@ -55,27 +92,35 @@ export function ProjectsSection() {
         </p>
       </motion.div>
 
-      {/* Projects List with seamless editorial borders */}
-      <div className="divide-y divide-border">
+      {/* Projects List with seamless editorial borders & full variant propagation */}
+      <motion.div variants={containerVariants} className="divide-y divide-border">
         {PROJECTS.map((project) => (
           <motion.article
             key={project.id}
-            variants={itemVariants}
-            className="px-4 sm:px-8 py-7 sm:py-8 space-y-4 hover:bg-accent/15 transition-colors group"
+            variants={cardVariants}
+            whileHover={{
+              y: -3,
+              transition: { duration: 0.25, ease: easeCustom },
+            }}
+            className="px-4 sm:px-8 py-7 sm:py-8 space-y-4 hover:bg-accent/15 transition-colors group relative"
           >
             {/* Top Row: Icon + Title & Tagline + Direct Action Link */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-3.5">
-                {/* Logo icon */}
-                <div className="relative w-12 h-12 sm:w-14 sm:h-14 shrink-0 bg-muted/40 border border-border overflow-hidden select-none shadow-xs group-hover:border-foreground/30 transition-colors">
+                {/* Logo icon with spring scale physics */}
+                <motion.div
+                  whileHover={{ scale: 1.08, rotate: -1.5 }}
+                  transition={{ type: "spring", stiffness: 350, damping: 22 }}
+                  className="relative w-12 h-12 sm:w-14 sm:h-14 shrink-0 bg-muted/40 border border-border overflow-hidden select-none shadow-xs group-hover:border-foreground/40 transition-colors"
+                >
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
                     sizes="(max-width: 640px) 48px, 56px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
+                    className="object-cover"
                   />
-                </div>
+                </motion.div>
 
                 {/* Title, Role & Tagline */}
                 <div className="space-y-0.5">
@@ -84,10 +129,12 @@ export function ProjectsSection() {
                       href={project.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-lg sm:text-xl font-bold text-foreground tracking-tight hover:underline inline-flex items-center gap-1 group/title"
+                      className="group/title inline-flex items-center gap-1 text-lg sm:text-xl font-bold text-foreground tracking-tight"
                     >
-                      <span>{project.name}</span>
-                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover/title:text-foreground group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all duration-150" />
+                      <span className="group-hover/title:underline decoration-foreground/40 underline-offset-4">
+                        {project.name}
+                      </span>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover/title:text-foreground group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all duration-200" />
                     </a>
                     {project.role && (
                       <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono border border-border text-muted-foreground bg-accent/40 uppercase tracking-wide">
@@ -101,21 +148,24 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Action Button */}
+              {/* Action Button with spring physics */}
               <div className="shrink-0">
-                <a
+                <motion.a
                   href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono border border-border hover:bg-accent hover:border-foreground/40 text-foreground shadow-xs transition-all active:scale-95"
+                  whileHover={{ scale: 1.03, y: -1 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-mono border border-border hover:border-foreground/80 bg-background hover:bg-accent text-foreground shadow-xs group/btn transition-colors"
                 >
                   {project.githubUrl ? (
-                    <Github className="w-3.5 h-3.5" />
+                    <Github className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:rotate-6" />
                   ) : (
-                    <ArrowUpRight className="w-3.5 h-3.5" />
+                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                   )}
                   <span>{project.actionLabel}</span>
-                </a>
+                </motion.a>
               </div>
             </div>
 
@@ -124,33 +174,38 @@ export function ProjectsSection() {
               {project.description}
             </p>
 
-            {/* Specs / Key Metrics Row */}
+            {/* Specs / Key Metrics Row with micro-hover physics */}
             <div className="flex flex-wrap items-center gap-1.5 pt-1">
               {project.specs.map((spec) => (
-                <span
+                <motion.span
                   key={spec}
-                  className="inline-flex items-center text-[11px] font-mono px-2 py-0.5 bg-accent/40 text-foreground/80 border border-border/80"
+                  variants={tagVariants}
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 22 }}
+                  className="inline-flex items-center text-[11px] font-mono px-2 py-0.5 bg-accent/40 text-foreground/85 border border-border/80 select-none cursor-default hover:border-foreground/30 hover:bg-accent"
                 >
                   {spec}
-                </span>
+                </motion.span>
               ))}
             </div>
 
             {/* Tech Stack Pills */}
             <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-              <span className="text-[11px] font-mono text-muted-foreground mr-1">Stack:</span>
+              <span className="text-[11px] font-mono text-muted-foreground mr-1 select-none">Stack:</span>
               {project.techStack.map((tech) => (
-                <span
+                <motion.span
                   key={tech}
-                  className="text-[11px] font-mono text-muted-foreground bg-muted/30 px-1.5 py-0.5 border border-border/60"
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 22 }}
+                  className="text-[11px] font-mono text-muted-foreground bg-muted/30 px-1.5 py-0.5 border border-border/60 hover:text-foreground hover:border-border transition-colors cursor-default select-none"
                 >
                   {tech}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.article>
         ))}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
