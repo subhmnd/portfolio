@@ -1,5 +1,6 @@
 import { ProfileHeader } from "@/components/ProfileHeader";
 import { AboutSection } from "@/components/AboutSection";
+import { ProjectsSection } from "@/components/ProjectsSection";
 import { getGithubContributions } from "@/lib/github";
 import { SOCIAL } from "@/lib/social";
 
@@ -12,6 +13,7 @@ export default async function Home() {
     <div className="w-full">
       <ProfileHeader initialContributions={contributions} />
       <AboutSection />
+      <ProjectsSection />
     </div>
   );
 }
