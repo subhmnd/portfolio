@@ -38,7 +38,7 @@ const containerVariants = {
 };
 
 const subtleItemVariants = {
-  hidden: { opacity: 0, y: 10, filter: "blur(6px)" },
+  hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
@@ -49,6 +49,7 @@ const subtleItemVariants = {
     },
     transitionEnd: {
       filter: "none",
+      transform: "none",
     },
   },
 };
