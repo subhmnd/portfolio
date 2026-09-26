@@ -47,10 +47,6 @@ const subtleItemVariants = {
       duration: 0.55,
       ease: smoothEase,
     },
-    transitionEnd: {
-      filter: "none",
-      transform: "none",
-    },
   },
 };
 

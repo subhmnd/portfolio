@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SOCIAL } from "@/lib/social";
 
-// Apple-grade Quint/Expo ease for silky downward reveal
+// Apple-grade Quint/Expo ease for silky, jitter-free downward reveal
 const smoothEase = [0.19, 1, 0.22, 1] as const;
 
 // Container coordinates staggered reveal
@@ -15,16 +15,16 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.12,
-      delayChildren: 0.05,
+      delayChildren: 0.04,
     },
   },
 };
 
-// Downward optical blur dissolve matching the praised projects motion
+// Downward optical blur dissolve settling naturally at rest
 const cascadeDownVariants: Variants = {
   hidden: { 
     opacity: 0, 
-    y: -16,
+    y: -18,
     filter: "blur(12px)",
   },
   visible: {
@@ -32,26 +32,18 @@ const cascadeDownVariants: Variants = {
     y: 0,
     filter: "blur(0px)",
     transition: {
-      duration: 0.7,
+      duration: 0.8,
       ease: smoothEase,
-    },
-    transitionEnd: {
-      filter: "none",
-      transform: "none",
     },
   },
 };
 
 export function AboutSection() {
-  const [animationDone, setAnimationDone] = useState(false);
-
   return (
     <motion.section
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      onAnimationComplete={() => setAnimationDone(true)}
-      style={animationDone ? { filter: "none", transform: "none" } : undefined}
       className="px-4 sm:px-8 py-8 sm:py-9 border-b border-border space-y-5"
     >
       {/* Section Title */}
@@ -68,19 +60,19 @@ export function AboutSection() {
       >
         {/* DESKTOP VERSION (md & up) - Rich narrative with clear hierarchy */}
         <div className="hidden md:block space-y-4">
-          {/* Paragraph 1: Origin & Early Journey (Lead statement) */}
-          <p className="text-[15px] sm:text-base leading-relaxed text-foreground font-normal">
-            &ldquo;Hi, I&apos;m <span className="font-semibold text-foreground">{SOCIAL.name}</span>. My software engineering journey began back in 2021 driven by a passion for building scalable web systems. Over the years, I coded and deployed numerous applications and tools. While many of those early experiments never blew up, each build was an invaluable masterclass that refined my technical craft and engineering discipline.&rdquo;
+          {/* Paragraph 1: Head / Origin (A little bit bold: font-medium, name in font-bold) */}
+          <p className="text-[15px] sm:text-base leading-relaxed text-foreground font-medium">
+            &ldquo;Hi, I&apos;m <span className="font-bold text-foreground">{SOCIAL.name}</span>. My software engineering journey began back in 2021 driven by a passion for building scalable web systems. Over the years, I coded and deployed numerous applications and tools. While many of those early experiments never blew up, each build was an invaluable masterclass that refined my technical craft and engineering discipline.&rdquo;
           </p>
 
-          {/* Paragraph 2: Core Vision for Nodezed (Primary mission) */}
+          {/* Paragraph 2: Core Vision for Nodezed (Mission with bold Nodezed link) */}
           <p className="text-[15px] sm:text-base leading-relaxed text-foreground font-normal">
             &ldquo;Today, all my energy and focus are poured into building{" "}
             <a
               href="https://nodezed.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-foreground underline underline-offset-4 decoration-foreground/40 hover:decoration-foreground inline-flex items-center gap-0.5"
+              className="font-bold text-foreground underline underline-offset-4 decoration-foreground/40 hover:decoration-foreground inline-flex items-center gap-0.5"
             >
               Nodezed
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -88,17 +80,17 @@ export function AboutSection() {
             . We are solving a bottleneck every builder encounters: deploying cloud infrastructure shouldn&apos;t require wrestling with complex DevOps configurations. Nodezed enables developers and businesses to launch and manage scalable cloud systems in a single click.&rdquo;
           </p>
 
-          {/* Paragraph 3: Monochrome Philosophy (Reflective secondary note) */}
-          <p className="text-sm sm:text-[15px] leading-relaxed text-foreground/75 font-normal">
+          {/* Paragraph 3: Monochrome Philosophy (A little less color, not too much: text-foreground/80) */}
+          <p className="text-sm sm:text-[15px] leading-relaxed text-foreground/80 font-normal">
             &ldquo;I have always had a deliberate obsession with monochrome. Black and white strips away decorative visual noise, forcing the interface to stand on the raw strength of its structure, spacing, and typography—which is why I chose it over colors.&rdquo;
           </p>
         </div>
 
         {/* MOBILE & TABLET VERSION (< md) - Compact narrative */}
         <div className="block md:hidden space-y-3.5">
-          {/* Paragraph 1: Origin */}
-          <p className="text-[14px] leading-relaxed text-foreground font-normal">
-            &ldquo;Hi, I&apos;m <span className="font-semibold text-foreground">{SOCIAL.name}</span>. My software journey began in 2021. Over the years, I coded and shipped dozens of applications and systems. While none blew up, each project refined my craft and taught me resilience.&rdquo;
+          {/* Paragraph 1: Head / Origin */}
+          <p className="text-[14px] leading-relaxed text-foreground font-medium">
+            &ldquo;Hi, I&apos;m <span className="font-bold text-foreground">{SOCIAL.name}</span>. My software journey began in 2021. Over the years, I coded and shipped dozens of applications and systems. While none blew up, each project refined my craft and taught me resilience.&rdquo;
           </p>
 
           {/* Paragraph 2: Nodezed */}
@@ -108,7 +100,7 @@ export function AboutSection() {
               href="https://nodezed.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-foreground underline underline-offset-4 decoration-foreground/40 hover:decoration-foreground inline-flex items-center gap-0.5"
+              className="font-bold text-foreground underline underline-offset-4 decoration-foreground/40 hover:decoration-foreground inline-flex items-center gap-0.5"
             >
               Nodezed
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -117,7 +109,7 @@ export function AboutSection() {
           </p>
 
           {/* Paragraph 3: Monochrome */}
-          <p className="text-[13px] leading-relaxed text-foreground/75 font-normal">
+          <p className="text-[13px] leading-relaxed text-foreground/80 font-normal">
             &ldquo;I have always chosen monochrome. Black and white strips away visual noise, allowing pure structure, spacing, and typography to stand on their own.&rdquo;
           </p>
         </div>
