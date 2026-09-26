@@ -38,13 +38,12 @@ const containerVariants = {
 };
 
 const subtleItemVariants = {
-  hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
+  hidden: { opacity: 0, y: 8 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.55,
+      duration: 0.4,
       ease: smoothEase,
     },
   },
@@ -60,7 +59,6 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
       className="w-full relative"
     >
       {/* 1. GitHub Contributions Banner Area (Clean, full banner heatmap) */}
