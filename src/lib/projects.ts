@@ -2,54 +2,44 @@ export interface Project {
   id: string;
   name: string;
   tagline: string;
+  category: string;
+  role?: string;
   description: string;
   image: string;
   url: string;
+  actionLabel: string;
   githubUrl?: string;
-  role?: string;
-  badge?: string;
-  highlights: string[];
+  specs: string[];
   techStack: string[];
-  featured: boolean;
 }
 
 export const PROJECTS: Project[] = [
   {
     id: "nodezed",
     name: "Nodezed",
-    tagline: "Developer Cloud Infrastructure, NVMe Servers & Global Edge Network",
+    tagline: "Developer Cloud Infrastructure & NVMe Servers",
+    category: "Cloud Platform",
+    role: "Founder & CEO",
     description:
-      "Next-generation developer cloud platform providing high-performance cloud compute, persistent NVMe storage, and global Anycast edge networks with sub-15 second instant server provisioning.",
+      "Next-generation cloud compute and global edge infrastructure engineered for developers and autonomous workflows. Enables builders to deploy high-performance NVMe cloud servers, Anycast edge networking, and container environments in under 15 seconds.",
     image: "/Nodezed.png",
     url: "https://nodezed.com",
-    role: "Founder & CEO",
-    badge: "Production Platform",
-    highlights: [
-      "Sub-15 second instant server provisioning with dedicated resources and full root SSH control",
-      "Cloud compute deployed across 12 global edge locations backed by multi-terabit fiber backbones",
-      "Developer REST APIs and autonomous AI agent workflows for automated infrastructure orchestration",
-      "Integrated 300+ PoP Anycast CDN, enterprise DDoS mitigation, and persistent NVMe storage",
-    ],
-    techStack: ["Cloud Infrastructure", "NVMe Compute", "Anycast CDN", "Networking", "REST API", "DevOps"],
-    featured: true,
+    actionLabel: "Visit nodezed.com",
+    specs: ["15s Provisioning", "12 Global Locations", "Anycast Edge CDN", "Full Root SSH"],
+    techStack: ["Cloud Infrastructure", "NVMe Compute", "Anycast CDN", "REST API", "DevOps"],
   },
   {
     id: "sync-disk",
     name: "Sync Disk",
-    tagline: "Native macOS Real-Time External Disk Mirror & Continuous Version History",
+    tagline: "Real-Time macOS External Disk Mirror & Backup",
+    category: "macOS System Tool",
     description:
-      "A high-performance macOS utility that continuously mirrors directories to external storage in real time while maintaining complete, point-in-time recoverable version history to prevent data loss.",
+      "A lightweight, high-performance macOS menu bar utility that continuously mirrors local directories to external storage in real time to prevent data loss. Built with native FSEvents streaming, crash-resilient Content-Addressable Storage (CAS) with SHA-256 deduplication, and safe iCloud Drive space eviction.",
     image: "/Sync-Disk.png",
     url: "https://github.com/subhmnd/Sync-Disk",
+    actionLabel: "View on GitHub",
     githubUrl: "https://github.com/subhmnd/Sync-Disk",
-    badge: "Open Source",
-    highlights: [
-      "Low-latency real-time file synchronization & backup powered by native macOS FSEvents streaming",
-      "Crash-resilient Content-Addressable Storage (CAS) with SHA-256 deduplication and atomic journals",
-      "Smart iCloud Drive space saver that verifies external replication before local file eviction",
-      "Finder-grade modern UI with interactive breadcrumbs, 3D icon previews, and 1-click version restore",
-    ],
-    techStack: ["Swift", "macOS", "FSEvents", "AppKit", "CAS Storage", "System Architecture"],
-    featured: true,
+    specs: ["Real-Time FSEvents", "SHA-256 CAS Engine", "iCloud Eviction", "Point-in-Time Restore"],
+    techStack: ["Swift", "macOS Sonoma/Sequoia", "FSEvents", "AppKit", "System Architecture"],
   },
 ];

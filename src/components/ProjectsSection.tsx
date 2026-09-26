@@ -3,175 +3,154 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Github, ExternalLink, ShieldCheck, Check } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { PROJECTS, type Project } from "@/lib/projects";
+import { ArrowUpRight, Github } from "lucide-react";
+import { PROJECTS } from "@/lib/projects";
 
-const subtleFadeVariants = {
-  hidden: { opacity: 0, y: 8 },
+const containerVariants = {
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    y: 0,
     transition: {
-      duration: 0.5,
-      delay: 0.15,
-      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.1,
+      delayChildren: 0.04,
     },
   },
 };
 
-interface ProjectsSectionProps {
-  limit?: number;
-  hideHeader?: boolean;
-}
+const itemVariants = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+};
 
-export function ProjectsSection({ limit, hideHeader = false }: ProjectsSectionProps) {
-  const displayedProjects = limit ? PROJECTS.slice(0, limit) : PROJECTS;
-
+export function ProjectsSection() {
   return (
-    <motion.section
-      id="projects"
-      variants={subtleFadeVariants}
-      initial={false}
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
       animate="visible"
-      className="px-4 sm:px-8 py-8 sm:py-9 border-b border-border space-y-6"
+      className="w-full"
     >
-      {/* Section Header */}
-      {!hideHeader && (
-        <div className="flex items-center justify-between">
-          <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground font-semibold">
-                Projects
-              </span>
-            </div>
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              Featured Systems & Platforms
-            </h2>
-          </div>
+      {/* Refined Page Header matching AboutSection padding & typography */}
+      <motion.div
+        variants={itemVariants}
+        className="px-4 sm:px-8 pt-8 sm:pt-10 pb-7 border-b border-border space-y-2"
+      >
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground font-semibold">
+            Projects
+          </span>
         </div>
-      )}
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+          Built Systems & Platforms
+        </h1>
+        <p className="text-sm text-muted-foreground max-w-xl leading-relaxed">
+          Production cloud infrastructure and native software engineered by Subh Mondal.
+        </p>
+      </motion.div>
 
-      {/* Projects Grid / Stack */}
-      <div className="space-y-6">
-        {displayedProjects.map((project) => (
-          <article
+      {/* Projects List with seamless editorial borders */}
+      <div className="divide-y divide-border">
+        {PROJECTS.map((project) => (
+          <motion.article
             key={project.id}
-            className="group border border-border bg-background hover:border-foreground/40 transition-colors p-5 sm:p-6 space-y-5"
+            variants={itemVariants}
+            className="px-4 sm:px-8 py-7 sm:py-8 space-y-4 hover:bg-accent/15 transition-colors group"
           >
-            {/* Top Row: Icon + Title & Badges + Action Buttons */}
-            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
-              <div className="flex items-start gap-4">
-                {/* Project Logo Icon */}
-                <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 bg-muted/30 border border-border overflow-hidden select-none shadow-xs group-hover:border-foreground/30 transition-colors">
+            {/* Top Row: Icon + Title & Tagline + Direct Action Link */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3.5">
+                {/* Logo icon */}
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 shrink-0 bg-muted/40 border border-border overflow-hidden select-none shadow-xs group-hover:border-foreground/30 transition-colors">
                   <Image
                     src={project.image}
                     alt={project.name}
                     fill
-                    sizes="(max-width: 640px) 56px, 64px"
-                    className="object-cover"
+                    sizes="(max-width: 640px) 48px, 56px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-300 ease-out"
                   />
                 </div>
 
-                {/* Title & Metadata */}
-                <div className="space-y-1">
+                {/* Title, Role & Tagline */}
+                <div className="space-y-0.5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-lg sm:text-xl font-bold text-foreground tracking-tight">
-                      {project.name}
-                    </h3>
-                    {project.badge && (
-                      <span className="inline-flex items-center px-2 py-0.5 text-[11px] font-mono font-medium border border-border text-muted-foreground bg-accent/40">
-                        {project.badge}
-                      </span>
-                    )}
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-lg sm:text-xl font-bold text-foreground tracking-tight hover:underline inline-flex items-center gap-1 group/title"
+                    >
+                      <span>{project.name}</span>
+                      <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover/title:text-foreground group-hover/title:translate-x-0.5 group-hover/title:-translate-y-0.5 transition-all duration-150" />
+                    </a>
                     {project.role && (
-                      <span className="inline-flex items-center px-2 py-0.5 text-[11px] font-mono font-medium border border-foreground/30 text-foreground bg-foreground/5">
+                      <span className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono border border-border text-muted-foreground bg-accent/40 uppercase tracking-wide">
                         {project.role}
                       </span>
                     )}
                   </div>
-                  <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+                  <p className="text-xs sm:text-[13px] font-medium text-muted-foreground">
                     {project.tagline}
                   </p>
                 </div>
               </div>
 
-              {/* Action Link Button */}
-              <div className="flex items-center gap-2 shrink-0 pt-1 sm:pt-0">
-                {project.githubUrl ? (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="h-8 px-3 text-xs font-medium border-border hover:bg-accent text-foreground shadow-xs group/btn"
-                  >
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5"
-                    >
-                      <Github className="w-3.5 h-3.5" />
-                      <span>View GitHub</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 opacity-70 group-hover/btn:opacity-100 transition-opacity" />
-                    </a>
-                  </Button>
-                ) : (
-                  <Button
-                    asChild
-                    variant="outline"
-                    size="sm"
-                    className="h-8 px-3 text-xs font-medium border-border hover:bg-accent text-foreground shadow-xs group/btn"
-                  >
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" />
-                      <span>Visit Site</span>
-                      <ArrowUpRight className="w-3.5 h-3.5 opacity-70 group-hover/btn:opacity-100 transition-opacity" />
-                    </a>
-                  </Button>
-                )}
+              {/* Action Button */}
+              <div className="shrink-0">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono border border-border hover:bg-accent hover:border-foreground/40 text-foreground shadow-xs transition-all active:scale-95"
+                >
+                  {project.githubUrl ? (
+                    <Github className="w-3.5 h-3.5" />
+                  ) : (
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  )}
+                  <span>{project.actionLabel}</span>
+                </a>
               </div>
             </div>
 
-            {/* Description */}
+            {/* Description Narrative */}
             <p className="text-sm leading-relaxed text-foreground/90 font-normal">
               {project.description}
             </p>
 
-            {/* Highlights List */}
-            <div className="border-t border-border/60 pt-4 space-y-2">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground font-semibold block">
-                Key Architecture & Features
-              </span>
-              <ul className="grid grid-cols-1 gap-2 text-xs sm:text-[13px] text-muted-foreground">
-                {project.highlights.map((highlight, idx) => (
-                  <li key={idx} className="flex items-start gap-2">
-                    <Check className="w-3.5 h-3.5 text-foreground shrink-0 mt-0.5" />
-                    <span className="leading-snug">{highlight}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Specs / Key Metrics Row */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-1">
+              {project.specs.map((spec) => (
+                <span
+                  key={spec}
+                  className="inline-flex items-center text-[11px] font-mono px-2 py-0.5 bg-accent/40 text-foreground/80 border border-border/80"
+                >
+                  {spec}
+                </span>
+              ))}
             </div>
 
-            {/* Tech Stack Tags */}
-            <div className="flex flex-wrap items-center gap-1.5 pt-1">
+            {/* Tech Stack Pills */}
+            <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+              <span className="text-[11px] font-mono text-muted-foreground mr-1">Stack:</span>
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2 py-0.5 text-[11px] font-mono text-muted-foreground bg-accent/50 border border-border"
+                  className="text-[11px] font-mono text-muted-foreground bg-muted/30 px-1.5 py-0.5 border border-border/60"
                 >
                   {tech}
                 </span>
               ))}
             </div>
-          </article>
+          </motion.article>
         ))}
       </div>
-    </motion.section>
+    </motion.div>
   );
 }

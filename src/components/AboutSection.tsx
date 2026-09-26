@@ -6,14 +6,13 @@ import { ArrowUpRight } from "lucide-react";
 import { SOCIAL } from "@/lib/social";
 
 const subtleFadeVariants = {
-  hidden: { opacity: 0, y: 8 },
+  hidden: { opacity: 0, y: 14 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      delay: 0.25,
-      ease: [0.16, 1, 0.3, 1],
+      duration: 0.45,
+      ease: [0.22, 1, 0.36, 1],
     },
   },
 };
@@ -23,8 +22,9 @@ export function AboutSection() {
     <motion.section
       id="about"
       variants={subtleFadeVariants}
-      initial={false}
-      animate="visible"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       className="px-4 sm:px-8 py-8 sm:py-9 border-b border-border space-y-5"
     >
       {/* Clean Minimalist Section Title */}
