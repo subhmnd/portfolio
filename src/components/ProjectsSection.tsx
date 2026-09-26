@@ -21,19 +21,17 @@ const containerVariants: Variants = {
   },
 };
 
-// Top-to-bottom slide reveal with optical blur dissolve
+// Clean downward slide reveal
 const cascadeDownVariants: Variants = {
   hidden: { 
     opacity: 0, 
-    y: -20,
-    filter: "blur(14px)",
+    y: -12,
   },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: {
-      duration: 0.75,
+      duration: 0.45,
       ease: smoothEase,
     },
   },
@@ -45,13 +43,11 @@ export function ProjectsSection() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
       className="w-full"
     >
       {/* Section Header (without the small 'Projects' tag above) */}
       <motion.div
         variants={cascadeDownVariants}
-        style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
         className="px-4 sm:px-8 pt-8 sm:pt-10 pb-7 border-b border-border space-y-2"
       >
         <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
@@ -68,7 +64,6 @@ export function ProjectsSection() {
           <motion.article
             key={project.id}
             variants={cascadeDownVariants}
-            style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
             className="px-4 sm:px-8 py-7 sm:py-8 border-b border-border space-y-3.5 hover:bg-accent/15 transition-colors duration-200 group relative"
           >
             {/* Top Row: Icon + Title & Tagline + Action Link */}
