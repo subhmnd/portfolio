@@ -21,18 +21,23 @@ const containerVariants: Variants = {
   },
 };
 
-// Clean downward slide reveal
+// Downward slide reveal with smooth blur dissipation
 const cascadeDownVariants: Variants = {
   hidden: { 
     opacity: 0, 
-    y: -12,
+    y: -18,
+    filter: "blur(10px)",
   },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.45,
+      duration: 0.65,
       ease: smoothEase,
+    },
+    transitionEnd: {
+      filter: "none",
     },
   },
 };
