@@ -119,7 +119,7 @@ export function ArticlesSection() {
 
                 {/* Subtitle / Excerpt Narrative */}
                 <p className="text-xs sm:text-[13px] text-foreground/80 leading-relaxed font-normal">
-                  {article.subtitle} Nodezed brings essential compute, storage, and edge networking into a unified developer platform.
+                  {article.summary}
                 </p>
               </div>
 
