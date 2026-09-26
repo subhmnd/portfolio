@@ -34,7 +34,7 @@ export const ARTICLES: Article[] = [
     image: "/articles/nodezed-building.png",
     tags: ["Cloud Infrastructure", "Nodezed", "DevOps", "Developer Experience"],
     summary:
-      "A simpler, more transparent way to deploy and manage cloud infrastructure. Cloud infrastructure has become unnecessarily complicated—Nodezed brings essential compute, storage, databases, and edge networking together into a unified experience built for developers.",
+      "A simpler, more transparent way to deploy and manage cloud infrastructure. Nodezed brings essential compute, storage, and edge networking into a unified developer platform.",
     author: {
       name: "Subh Mondal",
       role: "Founder & CEO at Nodezed",
