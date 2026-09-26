@@ -36,10 +36,6 @@ const cascadeDownVariants: Variants = {
       duration: 0.75,
       ease: smoothEase,
     },
-    transitionEnd: {
-      filter: "none",
-      transform: "none",
-    },
   },
 };
 
