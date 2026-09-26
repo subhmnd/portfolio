@@ -1,3 +1,5 @@
+import { SOCIAL } from "@/lib/social";
+
 export interface ContributionDay {
   date: string;
   count: number;
@@ -9,7 +11,7 @@ interface ContributionsApiResponse {
   contributions: ContributionDay[];
 }
 
-export async function getGithubContributions(username = "amsubhm"): Promise<ContributionDay[]> {
+export async function getGithubContributions(username: string = SOCIAL.github.username): Promise<ContributionDay[]> {
   try {
     const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${username}?y=last`, {
       next: { revalidate: 3600 }, // Cache on Edge CDN and revalidate hourly

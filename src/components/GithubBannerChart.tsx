@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import type { ContributionDay } from "@/lib/github";
+import { SOCIAL } from "@/lib/social";
 
 interface GithubBannerChartProps {
   username?: string;
@@ -9,7 +10,7 @@ interface GithubBannerChartProps {
 }
 
 export function GithubBannerChart({
-  username = "amsubhm",
+  username = SOCIAL.github.username,
   initialContributions = [],
 }: GithubBannerChartProps) {
   const [contributions, setContributions] = useState<ContributionDay[]>(initialContributions);

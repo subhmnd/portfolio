@@ -3,13 +3,14 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { Navbar } from "@/components/Navbar";
+import { SOCIAL } from "@/lib/social";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "https://am.subhm.in"),
-  title: "Subhankar Mondal",
-  description: "Hi I am Subhankar! Founder & CEO at Nodezed.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || SOCIAL.website),
+  title: SOCIAL.name,
+  description: SOCIAL.shortBio,
   alternates: {
     canonical: "./",
   },
@@ -30,10 +31,10 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "Subhankar Mondal",
-    description: "Hi I am Subhankar! Founder & CEO at Nodezed.",
-    url: "https://am.subhm.in",
-    siteName: "Subhankar Mondal",
+    title: SOCIAL.name,
+    description: SOCIAL.shortBio,
+    url: SOCIAL.website,
+    siteName: SOCIAL.name,
     locale: "en_US",
     type: "website",
     images: [
@@ -41,15 +42,15 @@ export const metadata: Metadata = {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "Subhankar Mondal",
+        alt: SOCIAL.name,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Subhankar Mondal",
-    description: "Hi I am Subhankar! Founder & CEO at Nodezed.",
-    creator: "@amsubhm",
+    title: SOCIAL.name,
+    description: SOCIAL.shortBio,
+    creator: SOCIAL.x.handle,
     images: ["/og.png"],
   },
 };

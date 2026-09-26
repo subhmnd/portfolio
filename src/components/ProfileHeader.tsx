@@ -7,12 +7,13 @@ import { motion } from "framer-motion";
 import { 
   CheckCircle2, 
   Github, 
-  Linkedin, 
+  Instagram, 
   ArrowUpRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { GithubBannerChart } from "@/components/GithubBannerChart";
+import { SOCIAL } from "@/lib/social";
 import type { ContributionDay } from "@/lib/github";
 
 function XIcon(props: React.SVGProps<SVGSVGElement>) {
@@ -64,7 +65,7 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
         className="w-full h-24 sm:h-32 border-b border-border bg-background relative overflow-hidden flex flex-col justify-start z-20"
       >
         {/* Live GitHub Contributions Heatmap Background */}
-        <GithubBannerChart username="amsubhm" initialContributions={initialContributions} />
+        <GithubBannerChart username={SOCIAL.github.username} initialContributions={initialContributions} />
       </motion.div>
 
       {/* 2. Profile Details Section (Matching px-4 sm:px-8 Side Padding) */}
@@ -74,13 +75,13 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
           variants={subtleItemVariants}
           className="flex items-end justify-between gap-3 -mt-12 sm:-mt-14 relative z-20 pointer-events-none"
         >
-          {/* Left Side: Overlapping DP + [Articles] & [ThemeToggle] */}
+          {/* Left Side: Overlapping DP + [Projects] & [ThemeToggle] */}
           <div className="flex items-end gap-2.5 sm:gap-3 pointer-events-auto">
             {/* Overlapping Square DP */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 bg-muted border-4 border-background overflow-hidden relative select-none shadow-xs shrink-0">
               <Image
                 src="/me.png"
-                alt="Subhankar"
+                alt={SOCIAL.name}
                 fill
                 priority
                 sizes="(max-width: 768px) 96px, 112px"
@@ -88,7 +89,7 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
               />
             </div>
 
-            {/* Articles & Theme Toggle (directly after DP) */}
+            {/* Projects & Theme Toggle (directly after DP) */}
             <div className="flex items-center gap-1.5 pb-1">
               <Button
                 asChild
@@ -96,8 +97,8 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
                 size="sm"
                 className="h-8 px-3 text-xs font-medium border-border hover:bg-accent text-foreground shadow-xs"
               >
-                <Link href="/articles">
-                  Articles
+                <Link href="/projects">
+                  Projects
                 </Link>
               </Button>
 
@@ -115,10 +116,10 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
               variant="outline"
               size="icon"
               className="w-8 h-8 border-border hover:bg-accent text-foreground shadow-xs"
-              title="X Profile (@amsubhm)"
+              title={SOCIAL.x.title}
             >
               <a
-                href="https://subhm.in/x"
+                href={SOCIAL.x.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X Profile"
@@ -133,10 +134,10 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
               variant="outline"
               size="icon"
               className="w-8 h-8 border-border hover:bg-accent text-foreground shadow-xs"
-              title="GitHub (@amsubhm)"
+              title={SOCIAL.github.title}
             >
               <a
-                href="https://subhm.in/gh"
+                href={SOCIAL.github.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
@@ -145,21 +146,21 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
               </a>
             </Button>
 
-            {/* LinkedIn */}
+            {/* Instagram */}
             <Button
               asChild
               variant="outline"
               size="icon"
               className="w-8 h-8 border-border hover:bg-accent text-foreground shadow-xs"
-              title="LinkedIn (@amsubhm)"
+              title={SOCIAL.instagram.title}
             >
               <a
-                href="https://subhm.in/in"
+                href={SOCIAL.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn Profile"
+                aria-label="Instagram Profile"
               >
-                <Linkedin className="w-4 h-4" />
+                <Instagram className="w-4 h-4" />
               </a>
             </Button>
           </div>
@@ -169,12 +170,12 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
         <motion.div variants={subtleItemVariants} className="space-y-1 pt-1">
           <div className="flex items-center gap-1.5">
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
-              Subhankar
+              {SOCIAL.name}
             </h1>
             <CheckCircle2 className="w-4 h-4 text-foreground fill-foreground/10 shrink-0" />
           </div>
           <p className="text-sm font-mono text-muted-foreground">
-            @amsubhm
+            {SOCIAL.handle}
           </p>
         </motion.div>
 
