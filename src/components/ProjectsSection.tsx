@@ -16,7 +16,7 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.16,
-      delayChildren: 0.05,
+      delayChildren: 0.04,
     },
   },
 };
@@ -48,17 +48,12 @@ export function ProjectsSection() {
       style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
       className="w-full"
     >
-      {/* Section Header */}
+      {/* Section Header (without the small 'Projects' tag above) */}
       <motion.div
         variants={cascadeDownVariants}
         style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
         className="px-4 sm:px-8 pt-8 sm:pt-10 pb-7 border-b border-border space-y-2"
       >
-        <div className="flex items-center gap-2">
-          <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground font-semibold">
-            Projects
-          </span>
-        </div>
         <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
           Built Systems & Platforms
         </h1>
@@ -67,14 +62,14 @@ export function ProjectsSection() {
         </p>
       </motion.div>
 
-      {/* Projects List without hover translates or small tags */}
-      <motion.div variants={containerVariants} className="divide-y divide-border">
+      {/* Projects List with Smart Bottom Border on every item */}
+      <motion.div variants={containerVariants} className="w-full">
         {PROJECTS.map((project) => (
           <motion.article
             key={project.id}
             variants={cascadeDownVariants}
             style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
-            className="px-4 sm:px-8 py-7 sm:py-8 space-y-3.5 hover:bg-accent/15 transition-colors duration-200 group relative"
+            className="px-4 sm:px-8 py-7 sm:py-8 border-b border-border space-y-3.5 hover:bg-accent/15 transition-colors duration-200 group relative"
           >
             {/* Top Row: Icon + Title & Tagline + Action Link */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
