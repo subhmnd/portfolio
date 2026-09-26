@@ -5,14 +5,21 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { SOCIAL } from "@/lib/social";
 
+const smoothEase = [0.19, 1, 0.22, 1] as const;
+
 const subtleFadeVariants = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { 
+    opacity: 0, 
+    y: 12,
+    filter: "blur(4px)",
+  },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.45,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.65,
+      ease: smoothEase,
     },
   },
 };
@@ -23,8 +30,8 @@ export function AboutSection() {
       id="about"
       variants={subtleFadeVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      animate="visible"
+      style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
       className="px-4 sm:px-8 py-8 sm:py-9 border-b border-border space-y-5"
     >
       {/* Clean Minimalist Section Title */}

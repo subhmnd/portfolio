@@ -24,6 +24,8 @@ function XIcon(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+const smoothEase = [0.19, 1, 0.22, 1] as const;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -36,13 +38,14 @@ const containerVariants = {
 };
 
 const subtleItemVariants = {
-  hidden: { opacity: 0, y: 6 },
+  hidden: { opacity: 0, y: 10, filter: "blur(4px)" },
   visible: {
     opacity: 1,
     y: 0,
+    filter: "blur(0px)",
     transition: {
-      duration: 0.35,
-      ease: [0.22, 1, 0.36, 1],
+      duration: 0.55,
+      ease: smoothEase,
     },
   },
 };
@@ -55,8 +58,9 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
   return (
     <motion.div
       variants={containerVariants}
-      initial={false}
+      initial="hidden"
       animate="visible"
+      style={{ willChange: "transform, opacity, filter", transform: "translateZ(0)" }}
       className="w-full relative"
     >
       {/* 1. GitHub Contributions Banner Area (Clean, full banner heatmap) */}
