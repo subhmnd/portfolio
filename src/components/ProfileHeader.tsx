@@ -8,6 +8,7 @@ import {
   CheckCircle2, 
   Github, 
   Instagram, 
+  Linkedin,
   ArrowUpRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -146,6 +147,24 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
                 aria-label="GitHub Profile"
               >
                 <Github className="w-4 h-4" />
+              </a>
+            </Button>
+
+            {/* LinkedIn */}
+            <Button
+              asChild
+              variant="outline"
+              size="icon"
+              className="w-8 h-8 border-border hover:bg-accent text-foreground shadow-xs"
+              title={SOCIAL.linkedin.title}
+            >
+              <a
+                href={SOCIAL.linkedin.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn Profile"
+              >
+                <Linkedin className="w-4 h-4" />
               </a>
             </Button>
 
