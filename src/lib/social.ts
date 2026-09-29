@@ -42,6 +42,13 @@ export const SOCIAL = {
     url: "https://instagram.com/subhmnd",
     title: "Instagram (@subhmnd)",
   },
+  linkedin: {
+    name: "LinkedIn",
+    username: "subhm",
+    handle: "@subhm",
+    url: "https://linkedin.com/in/subhm",
+    title: "LinkedIn (@subhm)",
+  },
 } as const;
 
-export type SocialKey = "x" | "github" | "instagram";
+export type SocialKey = "x" | "github" | "instagram" | "linkedin";
