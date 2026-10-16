@@ -83,13 +83,10 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
           <div className="flex items-end gap-2.5 sm:gap-3 pointer-events-auto">
             {/* Overlapping Square DP */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 bg-muted border-4 border-background overflow-hidden relative select-none shadow-xs shrink-0">
-              <Image
+              <img
                 src={SOCIAL.avatar}
                 alt={SOCIAL.name}
-                fill
-                priority
-                sizes="(max-width: 768px) 96px, 112px"
-                className="object-cover"
+                className="w-full h-full object-cover"
               />
             </div>
 

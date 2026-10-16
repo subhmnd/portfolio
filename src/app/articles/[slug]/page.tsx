@@ -147,12 +147,10 @@ export default function ArticleDetailPage({ params }: Props) {
           <div className="flex flex-wrap items-center justify-between gap-4 pt-4 sm:pt-5 border-t border-border/60">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 border border-border overflow-hidden shrink-0 select-none">
-                <Image
+                <img
                   src={article.author.avatar}
                   alt={article.author.name}
-                  fill
-                  sizes="40px"
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </div>
               <div>
