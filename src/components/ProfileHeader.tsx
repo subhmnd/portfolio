@@ -84,7 +84,7 @@ export function ProfileHeader({ initialContributions = [] }: ProfileHeaderProps)
             {/* Overlapping Square DP */}
             <div className="w-24 h-24 sm:w-28 sm:h-28 bg-muted border-4 border-background overflow-hidden relative select-none shadow-xs shrink-0">
               <Image
-                src="/me.png"
+                src={SOCIAL.avatar}
                 alt={SOCIAL.name}
                 fill
                 priority

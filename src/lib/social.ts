@@ -11,6 +11,7 @@ export const SOCIAL = {
   firstName: "Subh",
   username: "subhmnd",
   handle: "@subhmnd",
+  avatar: "https://avatars.githubusercontent.com/u/269526018",
   title: "Founder & CEO at Nodezed",
   bio: "Founder & CEO at Nodezed, enabling developers and businesses to deploy scalable cloud infrastructure in a single click.",
   shortBio: "Hi I am Subh! Founder & CEO at Nodezed.",

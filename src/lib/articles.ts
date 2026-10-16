@@ -39,7 +39,7 @@ export const ARTICLES: Article[] = [
       name: "Subh Mondal",
       role: "Founder & CEO at Nodezed",
       handle: "@subhmnd",
-      avatar: "/me.png",
+      avatar: "https://avatars.githubusercontent.com/u/269526018",
     },
     sections: [
       {
